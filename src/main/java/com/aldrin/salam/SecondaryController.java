@@ -13,24 +13,23 @@ import javafx.stage.Stage;
 public class SecondaryController {
 
     @FXML
-private Button myButton;
-     @FXML
+    private Button myButton;
+    @FXML
     private ImageView imageView;
 
+    @FXML
+    private void switchToPrimary() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("primary.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) myButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
 
-@FXML
-private void switchToPrimary() throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("primary.fxml"));
-    Parent root = loader.load();
-    Stage stage = (Stage) myButton.getScene().getWindow();
-    stage.setScene(new Scene(root));
-}
-public void initialize() {
+    public void initialize() {
         // Optionally set the image programmatically
-        Image image = new Image(getClass().getResourceAsStream("icons8-précédent-64.png"));
+        Image image = new Image(getClass().getResourceAsStream("icons8-flèche-gauche-100.png"));
         imageView.setImage(image);
+        myButton.setGraphic(imageView);
+        myButton.setStyle("-fx-background-color: transparent;"); // Optional: makes button background transparent
     }
 }
-
-
-
